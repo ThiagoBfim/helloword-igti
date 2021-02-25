@@ -1,19 +1,21 @@
 package com.igti.helloword;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class SplashActivity extends AppCompatActivity {
-    private static boolean splashLoaded = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
 
-        if (!splashLoaded) {
+        if (sharedPreferences.getBoolean("splashLoaded", false)) {
             setContentView(R.layout.activity_splash);
             int secondsDelayed = 4;
             new Handler().postDelayed(new Runnable() {
@@ -22,8 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                     finish();
                 }
             }, secondsDelayed * 1000);
-
-            splashLoaded = true;
+            sharedPreferences.edit().putBoolean("splashLoaded", true);
         }
         else {
             Intent goToMainActivity = new Intent(SplashActivity.this, MainActivity.class);
