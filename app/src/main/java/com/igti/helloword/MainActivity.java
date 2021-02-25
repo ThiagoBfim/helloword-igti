@@ -1,13 +1,13 @@
 package com.igti.helloword;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-
 import android.util.Log;
-import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        registerBroadcast();
+
         findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void registerBroadcast() {
+        BroadcastReceiver br = new BatteryBroadcastReceiver();
+
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
+        filter.addAction(Intent.ACTION_BATTERY_LOW);
+        this.registerReceiver(br, filter);
     }
 
     @Override
