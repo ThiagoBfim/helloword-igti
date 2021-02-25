@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         BroadcastReceiver br = new BatteryBroadcastReceiver();
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
-        filter.addAction(Intent.ACTION_BATTERY_LOW);
         this.registerReceiver(br, filter);
     }
 
