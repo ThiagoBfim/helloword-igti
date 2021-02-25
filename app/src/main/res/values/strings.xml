@@ -9,4 +9,7 @@
     <string name="hello_word">Word</string>
 
     <string name="bem_vindo_message">Bem vindo ao App de Palavras.</string>
+    <string name="splash_title">Hello World</string>
+    <string name="group_name">GRUPO 4</string>
+    <string name="group_members">Thiago Bonfim \nSamuel Henrique \nTiago Oliveira.</string>
 </resources>
