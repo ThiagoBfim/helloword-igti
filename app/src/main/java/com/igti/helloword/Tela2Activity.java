@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Tela2Activity extends AppCompatActivity {
 
@@ -32,6 +34,9 @@ public class Tela2Activity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView imageView = findViewById(R.id.imageView2);
         setSupportActionBar(toolbar);
+
+        TextView textView = findViewById(R.id.textView3);
+        textView.setText(getMembersName());
 
         findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +49,15 @@ public class Tela2Activity extends AppCompatActivity {
         Picasso.get()
                 .load("https://merriam-webster.com/assets/mw/images/gallery/gal-wap-slideshow-slide/new-scrabble-words-2018-beatdown-5657-7691acd0ad774ceb507062ab70f8a346@1x.jpg")
                 .resize(250,250).noFade().into(imageView);
+    }
+
+    private String getMembersName() {
+        ArrayList<String> members = getIntent().getStringArrayListExtra("GROUP_MEMBERS");
+        StringBuffer membersString = new StringBuffer();
+        for (String name : members) {
+            membersString.append(name + "\n");
+        }
+        return membersString.toString();
     }
 
     @Override

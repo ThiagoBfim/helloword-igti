@@ -12,8 +12,15 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    final ArrayList<String> groupMembers = new ArrayList<String>(Arrays.asList("Thiago Santos do Bonfim",
+            "Samuel Henrique dos Santos da Silva",
+            "Tiago Sacramento de Oliveira"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), Tela2Activity.class);
+                intent.putStringArrayListExtra("GROUP_MEMBERS", groupMembers);
                 startActivity(intent);
             }
         });
